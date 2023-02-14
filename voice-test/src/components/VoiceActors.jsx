@@ -9,24 +9,25 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import defaultUserPicture from '../assets/default_user_picture.png';
+import IconButton from '@mui/material/IconButton';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
-
-// TODO: Verify link, fix image
 
 
 function VoiceActorCard({ actorName, userName, pictureUrl, matchingText, sampleUrl }) {
   console.log(pictureUrl)
+  console.log(`https://voice123.com/${encodeURIComponent(userName)}`)
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        height="140"
+        height="300"
         image={pictureUrl ?? defaultUserPicture}
         alt="Voice Actor Image"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          <Link href={`https://voice123.com/${encodeURIComponent(userName)}}`}>
+          <Link href={`https://voice123.com/${encodeURIComponent(userName)}`}>
             {actorName}
           </Link>
         </Typography>
@@ -34,6 +35,11 @@ function VoiceActorCard({ actorName, userName, pictureUrl, matchingText, sampleU
           {matchingText}
         </Typography>
       </CardContent>
+      <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+        <IconButton aria-label="play/pause">
+          <PlayArrowIcon sx={{ height: 38, width: 38 }} />
+        </IconButton>
+      </Box>
     </Card >
   );
 }
