@@ -15,6 +15,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 
 function VoiceActorCard({ actorName, userName, pictureUrl, matchingText, sampleUrl }) {
+  console.log(encodeURI(sampleUrl))
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -34,9 +35,11 @@ function VoiceActorCard({ actorName, userName, pictureUrl, matchingText, sampleU
         </Typography>
       </CardContent>
       <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-        <IconButton aria-label="play/pause">
-          <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-        </IconButton>
+        <CardMedia
+          component="audio"
+          controls
+          src={encodeURI(sampleUrl)}
+        />
       </Box>
     </Card >
   );
@@ -64,7 +67,7 @@ export default function VoiceActorGrid({ actors }) {
               undefined
             }
             matchingText={'figure this out'}
-            sampleUrl={actorData.user.relevant_sample ?? 'hola'}
+            sampleUrl={actorData.relevant_sample.file ?? 'hola'}
           />
         </Grid>)
     })
