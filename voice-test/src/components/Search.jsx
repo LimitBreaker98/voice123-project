@@ -18,7 +18,7 @@ const allCustomHeaders = [PAGE_SIZE_HEADER, CURRENT_PAGE_HEADER, TOTAL_PAGES_HEA
 
 
 export default function SearchBar() {
-  const [keywords, setKeywords] = useState('')
+  const keywords = useRef('')
   const [data, setData] = useState([])
   const [searchState, setSearchState] = useState('')
   const [page, setPage] = useState(1)
@@ -43,7 +43,7 @@ export default function SearchBar() {
     userHasSearched.current = true;
     try {
       // TODO: Add fetch options?
-      const response = await fetch(`https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords)}&page=${page}`)
+      const response = await fetch(`https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords.current)}&page=${page}`)
 
 
       if (!response.ok) {
@@ -74,7 +74,7 @@ export default function SearchBar() {
             id="outlined-basic"
             label="Keywords"
             variant="outlined"
-            onChange={(event) => setKeywords(event.target.value)}
+            onChange={(event) => { keywords.current = event.target.value }}
             onKeyDown={(event) => {
               event.key === "Enter" ? search() : null
             }}
@@ -87,7 +87,7 @@ export default function SearchBar() {
           data.length > 0 ?
             <>
               <Grid item xs={12}>
-                <VoiceActorGrid actors={data} keywords={keywords} />
+                <VoiceActorGrid actors={data} keywords={keywords.current} />
               </Grid>
               <Grid item xs={12}>
                 <Pagination count={totalPages} page={page} onChange={handlePageChange} color="primary" />

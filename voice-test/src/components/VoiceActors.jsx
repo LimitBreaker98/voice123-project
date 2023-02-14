@@ -89,13 +89,7 @@ function VoiceActorCard({ actorName, userName, pictureUrl, matchingTextObject, s
 }
 
 export default function VoiceActorGrid({ actors, keywords }) {
-  // actorData is an object of the providers array of the endpoint's response body
-  // actorData.user is an object with user data
-  // has username, name, picture_small, picture_medium, picture_large
-  // actorData.relevant_sample is an object which has a sample file link and the name of the file. Let's play the file from there first.
-
-  // TODO: handle all cases of having picture_small, picture_medium, picture_large, or none of them.
-  // TODO: figure this out
+  console.log(`keywords: ${keywords}`)
   let actorCards = actors.map(
     (actorData, index) => {
       return (
@@ -113,8 +107,6 @@ export default function VoiceActorGrid({ actors, keywords }) {
           />
         </Grid>)
     })
-  // TODO: Pagination count should depend on the fetched data. Fetched data has a custom header with amount of pages. 
-  // Always show 10, and then show appropriate number of pages. ceil(N/10)
   return (
     <Box>
       <Grid container spacing={2} alignItems='center'>
