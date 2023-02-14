@@ -38,20 +38,18 @@ export default function SearchBar() {
 
   const search = async () => {
     setSearchState('LOADING');
+    // TODO implement dark mode.
     userHasSearched.current = true;
     try {
-
+      // TODO: Add fetch options?
       const response = await fetch(`https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords)}&page=${page}`)
+      console.log(`FETCHING https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords)}&page=${page}`)
 
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
       }
 
       const result = await response.json();
-
-      console.log('#providers: ', providers.length);
-      allCustomHeaders.map((customHeader) => console.log(`${customHeader}: ${response.headers.get(customHeader)}`))
-      console.log('result is: ', JSON.stringify(result, null, 4));
       const providers = result.providers;
 
       setData(providers);
@@ -62,6 +60,7 @@ export default function SearchBar() {
       setSearchState('DONE');
     }
   };
+  // TODO: attempt changing event for event, value and just selecting value. 
   return (
     <Container>
       <Grid container spacing={4} alignItems='center'>
