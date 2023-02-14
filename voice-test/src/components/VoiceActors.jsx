@@ -15,8 +15,6 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 
 function VoiceActorCard({ actorName, userName, pictureUrl, matchingText, sampleUrl }) {
-  console.log(pictureUrl)
-  console.log(`https://voice123.com/${encodeURIComponent(userName)}`)
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -44,8 +42,7 @@ function VoiceActorCard({ actorName, userName, pictureUrl, matchingText, sampleU
   );
 }
 
-export default function VoiceActorPaginatedGrid({ actors }) {
-  const [page, setPage] = useState(1)
+export default function VoiceActorGrid({ actors }) {
   // actorData is an object of the providers array of the endpoint's response body
   // actorData.user is an object with user data
   // has username, name, picture_small, picture_medium, picture_large
@@ -55,7 +52,6 @@ export default function VoiceActorPaginatedGrid({ actors }) {
   // TODO: figure this out
   let actorCards = actors.map(
     (actorData, index) => {
-      console.log(`Actor data!: ${JSON.stringify(actorData, null, 4)}`)
       return (
         <Grid item key={index} xs={4}>
           <VoiceActorCard
@@ -72,19 +68,12 @@ export default function VoiceActorPaginatedGrid({ actors }) {
           />
         </Grid>)
     })
-
-  function handleChange(_, value) {
-    setPage(value);
-  };
   // TODO: Pagination count should depend on the fetched data. Fetched data has a custom header with amount of pages. 
   // Always show 10, and then show appropriate number of pages. ceil(N/10)
   return (
     <Box>
       <Grid container spacing={2} alignItems='center'>
         {actorCards}
-        <Grid item xs={12}>
-          <Pagination count={3} page={page} onChange={handleChange} color="primary" />
-        </Grid>
       </Grid>
     </Box>
   )

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import Button from '@mui/material/Button';
 import { Container, Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import VoiceActorPaginatedGrid from './VoiceActors';
+import VoiceActorGrid from './VoiceActors';
+import Pagination from '@mui/material/Pagination';
 
 // TODO: refactor this into separate module to import elsewhere and unify.
 const PAGE_SIZE_HEADER = 'x-list-page-size'
@@ -21,15 +22,28 @@ export default function SearchBar() {
   const [searchState, setSearchState] = useState('')
   const [page, setPage] = useState(1)
   const [err, setErr] = useState('')
+  const userHasSearched = useRef(false);
+
+  function handlePageChange(_, value) {
+    setPage(value);
+  };
+
+  useEffect(() => {
+    if (userHasSearched.current) {
+      console.log("entered")
+      search();
+    }
+  }, [page]);
 
 
   const search = async () => {
     setSearchState('LOADING');
     // TODO implement dark mode.
-
+    userHasSearched.current = true;
     try {
       // TODO: Add fetch options?
       const response = await fetch(`https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords)}&page=${page}`)
+      console.log(`FETCHING https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords)}&page=${page}`)
 
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
@@ -38,9 +52,9 @@ export default function SearchBar() {
       const result = await response.json();
       const providers = result.providers;
 
-      console.log('#providers: ', providers.length);
-      allCustomHeaders.map((customHeader) => console.log(`${customHeader}: ${response.headers.get(customHeader)}`))
-      console.log('result is: ', JSON.stringify(result, null, 4));
+      // console.log('#providers: ', providers.length);
+      // allCustomHeaders.map((customHeader) => console.log(`${customHeader}: ${response.headers.get(customHeader)}`))
+      // console.log('result is: ', JSON.stringify(result, null, 4));
 
       setData(providers);
     } catch (err) {
@@ -68,9 +82,20 @@ export default function SearchBar() {
         <Grid item xs={2}>
           <Button variant="contained" size="large" onClick={search}> Search </Button>
         </Grid>
-        {data ? <Grid item xs={12}>
-          <VoiceActorPaginatedGrid actors={data} />
-        </Grid> : <></>}
+        {
+          data ?
+            <>
+              <Grid item xs={12}>
+                <VoiceActorGrid actors={data} />
+              </Grid>
+              <Grid item xs={12}>
+                <Pagination count={3} page={page} onChange={handlePageChange} color="primary" />
+              </Grid>
+            </>
+            :
+            <>
+            </>
+        }
       </Grid>
     </Container >
   );
