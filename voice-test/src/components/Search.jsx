@@ -21,6 +21,7 @@ export default function SearchBar() {
   const [data, setData] = useState([])
   const [searchState, setSearchState] = useState('')
   const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
   const [err, setErr] = useState('')
   const userHasSearched = useRef(false);
 
@@ -30,7 +31,6 @@ export default function SearchBar() {
 
   useEffect(() => {
     if (userHasSearched.current) {
-      console.log("entered")
       search();
     }
   }, [page]);
@@ -52,11 +52,8 @@ export default function SearchBar() {
       const result = await response.json();
       const providers = result.providers;
 
-      // console.log('#providers: ', providers.length);
-      // allCustomHeaders.map((customHeader) => console.log(`${customHeader}: ${response.headers.get(customHeader)}`))
-      // console.log('result is: ', JSON.stringify(result, null, 4));
-
       setData(providers);
+      setTotalPages(parseInt(response.headers.get('x-list-total-pages')));
     } catch (err) {
       setErr(err.message);
     } finally {
@@ -83,13 +80,13 @@ export default function SearchBar() {
           <Button variant="contained" size="large" onClick={search}> Search </Button>
         </Grid>
         {
-          data ?
+          data.length > 0 ?
             <>
               <Grid item xs={12}>
                 <VoiceActorGrid actors={data} />
               </Grid>
               <Grid item xs={12}>
-                <Pagination count={3} page={page} onChange={handlePageChange} color="primary" />
+                <Pagination count={totalPages} page={page} onChange={handlePageChange} color="primary" />
               </Grid>
             </>
             :
