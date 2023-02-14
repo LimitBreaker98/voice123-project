@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react'
 
+
 import Button from '@mui/material/Button';
 import { Container, Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -43,7 +44,7 @@ export default function SearchBar() {
     try {
       // TODO: Add fetch options?
       const response = await fetch(`https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords)}&page=${page}`)
-      console.log(`FETCHING https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(keywords)}&page=${page}`)
+
 
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
@@ -51,6 +52,9 @@ export default function SearchBar() {
 
       const result = await response.json();
       const providers = result.providers;
+
+      //const providerAsString = JSON.stringify(result.providers[0])
+      //console.log('result is: ', JSON.stringify(result.providers[0], null, 4));
 
       setData(providers);
       setTotalPages(parseInt(response.headers.get('x-list-total-pages')));
@@ -83,7 +87,7 @@ export default function SearchBar() {
           data.length > 0 ?
             <>
               <Grid item xs={12}>
-                <VoiceActorGrid actors={data} />
+                <VoiceActorGrid actors={data} keywords={keywords} />
               </Grid>
               <Grid item xs={12}>
                 <Pagination count={totalPages} page={page} onChange={handlePageChange} color="primary" />
