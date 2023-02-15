@@ -65,6 +65,8 @@ Approach 2 takes less time to implement but it is unsustainable in the long run,
 
 Approach 1 may take a bit longer since the API has to be modified, but once implemented the concern of finding the text is removed from the frontend. The frontend can now just render the matching text and the backend is responsible for providing exactly this information.
 
+This improvement is **imperative**, as currently the text matching is not guaranteed to reflect exactly which search criteria was used by the backend to filter the Voice Actors for our end customer.
+
 - Caching
 
   - With more time I can implement Caching throughout the project.
