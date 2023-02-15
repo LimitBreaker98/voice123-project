@@ -11,48 +11,27 @@ import { CardActionArea } from '@mui/material';
 import defaultUserPicture from '../assets/default_user_picture.png';
 import IconButton from '@mui/material/IconButton';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { flatten } from 'flat'
 
+import { getMatchingTextObject } from '../utils/StringHelpers.js'
 
-
-function getMatchingTextObject(actorData, usedKeywords) {
-  //console.log(`usedKeywords: ${usedKeywords} ${typeof (usedKeywords)}`)
-  usedKeywords = usedKeywords.toLowerCase()
-  usedKeywords = usedKeywords.split(' ')
-  let flatProviderObject = flatten(actorData)
-  for (let candidateText of Object.values(flatProviderObject)) {
-    if (typeof candidateText === 'string') {
-      candidateText = candidateText.toLowerCase()
-      for (let keyword of usedKeywords) {
-        if (candidateText.includes(keyword)) {
-          //console.log(`valor: ${candidateText}`)
-          console.log(getObjectFromMatchingText(candidateText, keyword))
-          return getObjectFromMatchingText(candidateText, keyword)
-        }
-      }
-    }
-  }
-  console.log("returned default")
-  return {} // TODO: clarify this
+function HighlightedText({ previousText, match, posteriorText }) {
+  return (
+    <>
+      <Typography component={'span'} variant="body2" color="text.secondary" display={'inline'}>
+        {previousText}
+      </Typography>
+      <Typography component={'span'} variant="body2" color="text.secondary" display={'inline'} fontWeight='bold'>
+        {match}
+      </Typography>
+      <Typography component={'span'} variant="body2" color="text.secondary" display={'inline'}>
+        {posteriorText}
+      </Typography>
+    </>
+  )
 }
-
-function getObjectFromMatchingText(matchingText, keyword) {
-  let textIsTooLong = matchingText.length >= 100
-  if (textIsTooLong) {
-    let keywordIndex = matchingText.indexOf(keyword)
-    matchingText = `... ${matchingText.slice(keywordIndex - 50, keywordIndex + 50)} ...`
-  }
-  let splittedText = matchingText.split(keyword)
-  let matchingTextObject = {
-    previousText: splittedText[0],
-    match: keyword,
-    posteriorText: splittedText[1]
-  }
-  return matchingTextObject
-}
-
 
 function VoiceActorCard({ actorName, userName, pictureUrl, matchingTextObject, sampleUrl }) {
+  const { previousText, match, posteriorText } = matchingTextObject
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -67,15 +46,7 @@ function VoiceActorCard({ actorName, userName, pictureUrl, matchingTextObject, s
             {actorName}
           </Link>
         </Typography>
-        <Typography component={'span'} variant="body2" color="text.secondary" display={'inline'}>
-          {matchingTextObject.previousText}
-        </Typography>
-        <Typography component={'span'} variant="body2" color="text.secondary" display={'inline'} fontWeight='bold'>
-          {matchingTextObject.match}
-        </Typography>
-        <Typography component={'span'} variant="body2" color="text.secondary" display={'inline'}>
-          {matchingTextObject.posteriorText}
-        </Typography>
+        <HighlightedText previousText={previousText} match={match} posteriorText={posteriorText} />
       </CardContent>
       <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
         <CardMedia
@@ -89,7 +60,6 @@ function VoiceActorCard({ actorName, userName, pictureUrl, matchingTextObject, s
 }
 
 export default function VoiceActorGrid({ actors, keywords }) {
-  console.log(`keywords: ${keywords}`)
   let actorCards = actors.map(
     (actorData, index) => {
       return (
@@ -103,13 +73,13 @@ export default function VoiceActorGrid({ actors, keywords }) {
               actorData.user.picture_large
             }
             matchingTextObject={getMatchingTextObject(actorData, keywords)}
-            sampleUrl={actorData.relevant_sample.file ?? 'hola'}
+            sampleUrl={actorData.relevant_sample.file ?? 'Provider has no sample file'}
           />
         </Grid>)
     })
   return (
     <Box>
-      <Grid container spacing={2} alignItems='center'>
+      <Grid container spacing={2} alignItems='stretch'>
         {actorCards}
       </Grid>
     </Box>
