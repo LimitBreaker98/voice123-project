@@ -50,7 +50,7 @@ export default function SearchComponent() {
 
   return (
     <Container>
-      <Grid container spacing={2} alignItems='flex' xs={12}>
+      <Grid container spacing={2} alignItems='flex'>
         <Grid item xs={12} md={6}>
           <TextField
             fullWidth

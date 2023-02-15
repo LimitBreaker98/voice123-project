@@ -1,5 +1,4 @@
 import { Container, CssBaseline, Grid } from '@mui/material';
-import { useState } from 'react';
 import './App.css';
 import SearchComponent from './components/Search';
 import Typography from '@mui/material/Typography';
