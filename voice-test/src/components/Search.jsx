@@ -25,10 +25,8 @@ export default function SearchComponent() {
   }, [page]);
 
   const search = async () => {
-    // TODO implement dark mode.
     userHasSearched.current = true;
     try {
-      // TODO: Add fetch options?
       const response = await fetch(
         `https://api.sandbox.voice123.com/providers/search/?service=voice_over&keywords=${encodeURIComponent(
           keywords.current
@@ -53,7 +51,7 @@ export default function SearchComponent() {
   // TODO: attempt changing event for event, value and just selecting value.
   return (
     <Container>
-      <Grid container spacing={4} alignItems='center' xs={12}>
+      <Grid container spacing={2} alignItems='flex' xs={12}>
         <Grid item xs={12} md={6}>
           <TextField
             fullWidth
@@ -71,8 +69,7 @@ export default function SearchComponent() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Button variant='contained' size='large' onClick={search}>
-            {' '}
-            Search{' '}
+            Search
           </Button>
         </Grid>
         {data.length > 0 ? (

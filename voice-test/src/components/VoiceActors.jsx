@@ -11,12 +11,7 @@ import defaultUserPicture from '../assets/default_user_picture.png';
 
 import { getMatchingTextObject } from '../utils/StringHelpers.js';
 
-function HighlightedText({
-  previousText,
-  match,
-  posteriorText,
-  extendDescription,
-}) {
+function HighlightedText({ previousText, match, posteriorText }) {
   return (
     <>
       <Typography
@@ -86,7 +81,7 @@ function VoiceActorCard({
 export default function VoiceActorGrid({ actors, keywords }) {
   let actorCards = actors.map((actorData, index) => {
     return (
-      <Grid item key={index} xs={12} md={4} lg={3}>
+      <Grid item key={index} xs={12} md={6} lg={4}>
         <VoiceActorCard
           actorName={actorData.user.name ?? 'default name'}
           userName={actorData.user.username ?? 'default username'}

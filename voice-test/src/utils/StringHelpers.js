@@ -41,7 +41,6 @@ function getObjectFromMatchingText(matchingText, keyword) {
     previousText: splittedText[0],
     match: keyword,
     posteriorText: splittedText[1],
-    extendDescription: matchingText.length >= LONG_TEXT_THRESHOLD,
   };
   return matchingTextObject;
 }
