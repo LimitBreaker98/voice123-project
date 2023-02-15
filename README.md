@@ -143,7 +143,10 @@ Additional backend endpoints could be set up if needed.
   - Some functions can be refactored in a better way. For example, the StringHelper functions.
 
 - More thorough testing on other browsers
+
   - The app was tested in Windows and MacOS, specifically on the Chrome and Safari browsers
+
+- Improving API security, since at the moment it does not use API Keys or another mechanism to avoid exploits and attacks. This is a test app so for the moment it does not matter, but a bigger project would require an implementation of secure feature.
 
 ## Space for ideas during development
 
