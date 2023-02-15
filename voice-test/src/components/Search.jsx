@@ -53,7 +53,7 @@ export default function SearchComponent() {
       setSearchState('DONE');
     }
   };
-  
+
   // TODO: attempt changing event for event, value and just selecting value. 
   return (
     <Container>
@@ -63,6 +63,7 @@ export default function SearchComponent() {
             fullWidth
             id="outlined-basic"
             label="Keywords"
+            helperText="e.g: male sexy"
             variant="outlined"
             onChange={(event) => { keywords.current = event.target.value }}
             onKeyDown={(event) => {
@@ -92,11 +93,18 @@ export default function SearchComponent() {
                   </Typography>
                 </Grid>
                 :
+                <>
                 <Grid item xs={12}>
                   <Typography variant='h6'>
-                    Write the search criteria for your voice actor and we will find a perfect one for you.
+                    Write the search criteria for your voice actor and we suggest some awesome people for your next project. 
                   </Typography>
                 </Grid>
+                <Grid item xs={12}>
+                  <Typography variant='subtitle'>
+                    Add keywords above separated by spaces and then click search or hit!
+                  </Typography>
+                </Grid>
+                </>
             )
 
         }
