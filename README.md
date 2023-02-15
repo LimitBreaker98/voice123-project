@@ -4,6 +4,18 @@
 
 Jorge Andres Esguerra (LimitBreaker98 on github)
 
+## Application features
+
+- Search bar where users can conduct searches using enter key or clicking the search button.
+- Matching text is highlighted and shown in Voice Actor Card.
+- Pagination of the grid of Voice Actors that match the search criteria
+- Search for all available talent by leaving the keywords field empty and searching.
+- Audio Player for voice sample per shown voice actor card.
+- Link to voice123 provider profile page by clicking on username in the Voice Actor Card.
+- Helpful text for the user to use the app
+- Responsive
+- Fully created with Material UI library and React + Vite
+
 ## Application Setup Guide
 
 This is a Vite + React application.
@@ -13,7 +25,13 @@ While Create React App is the better known project starter for React application
 
 ### Prerequisites
 
-This project requires you to have node and npm installed.
+This project requires you to have node and npm installed. Then, clone the repo and follow these steps.
+
+### Step 0: cd into project folder
+
+```
+    cd voice-test
+```
 
 ### Step 1: Get all the necessary packages for running the project
 
@@ -67,6 +85,10 @@ Approach 1 may take a bit longer since the API has to be modified, but once impl
 
 This improvement is **imperative**, as currently the text matching is not guaranteed to reflect exactly which search criteria was used by the backend to filter the Voice Actors for our end customer.
 
+- Improved UI of highlighted text
+
+  - The text component of the Voice Actor card behaves inconsistently when the description is short. An improvement would be to always guarantee equal Card height relative to other Cards, regardless of text content.
+
 - Caching
 
   - With more time I can implement Caching throughout the project.
@@ -76,24 +98,37 @@ This improvement is **imperative**, as currently the text matching is not guaran
 - Better UI styles
 
   - I have not had much experience designing UI's but with the help of other team members who have more experience, the styles of the app may look better. For example, using the CircleAvatar component to show the picture of every Voice Actor could help the look and feel of the app.
+  - Adding a theme using the createTheme functionality of Material UI would also standardize the styles used throughout the app and allow extensions to benefit from preset styling.
+  - Creating a theme would also allow implementation of dark mode.
 
 - Internationalization
 
   - If we have enough traffic from non-english speaking countries, I would consider adding internationalization support to the app. I'd use the [react-intl](https://www.npmjs.com/package/react-intl) package for this, since I've previously used it.
 
 - Backend improvements
+
   - At the moment, the provided backend returns an array of objects, where every object represents a Voice Actor. During my investigation of the responses, I figured out that some fields are repeated and redundant. I do not know the underlying implementation of our backend and what kind of DB it uses, but I could study how it is implemented and suggest improvements to reduce the redundancy of the data. This helps us storage wise and also improves the onboarding experience for new devs onto the codebase.
+
+- Test Suite
+
+  - Adding a unit test suite for the string utility functions
+  - Adding [cypress](https://www.cypress.io/) to have UI tests
+
+- Improve responsiveness of the app.
+
+  - The app is currently responsive but testing on different screen sizes was limited. Responsiveness in material ui can be fine tuned using the screen size props (xs, sm, md, lg, xl) and can be customized further using themes.
+
+- Production deployment
+
+  - Actually deploying the app instead of serving it locally.
+
+- Code cleanliness
+  - Some functions can be refactored in a better way. For example, the StringHelper functions.
 
 ## Space for ideas during development
 
 - The API provides data of voice over providers for services a customer may require.
 - The API already has some kind of text based search where it uses all the provided keywords as a filter for possible candidates, according to their data.
-- The API is paginated.
-- According to the custom headers of the response, every page has 10 rows, and there are 3 pages total, with 24 rows of data in total.
+- The API's response is paginated.
+- According to the custom headers of the response, every page has 10 rows, and at the moment there are 3 pages total, with 24 rows of data in total.
 - The API endpoint does not require authentication to be accessed.
-
-## Test list
-
-- Case 1: The search returns no results
-- Case 2: The search returns just one result
-- Case 3: The search returns multiple results
