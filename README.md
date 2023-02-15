@@ -50,6 +50,7 @@ Then, clone the repo and follow these steps.
 ```
 
 Alternatively, you can build and run a production build by using
+
 ```
     npm run build
     npm preview
@@ -67,7 +68,7 @@ Initial project setup
 | Voice Actor Card implementation (Basic Card Layout with image, link to voice123 profile)  | 2 hours                                                       |
 | Media Player implementation                                                               | 1 hour                                                        |
 | Highlighted text implementation                                                           | 4 hours                                                       |
-| Final refactoring and testing manually on Safari, Chrome.                                                     | 4 hours                                                       |
+| Final refactoring and testing manually on Safari, Chrome.                                 | 4 hours                                                       |
 
 Note: Highlighted text was the most challenging part of the project since there is no specification on how the provided API endpoint for search uses the keywords parameters to filter the returned voice actors.
 
@@ -131,15 +132,18 @@ Additional backend endpoints could be set up if needed.
 
   - The app is currently responsive but testing on different screen sizes was limited. Responsiveness in material ui can be fine tuned using the screen size props (xs, sm, md, lg, xl) and can be customized further using themes.
 
+  - The proposed solution limits the amount of characters shown in the matching text per Voice Actor. This was done intentionally to show relevant information to the client while avoiding showing too much information that may saturate them. This also ensures smooth look and feel of the app since the rendered Cards will always have a matching text of at most 2 lines, regardless of the device they are using (phone, tablet, pc or bigger screen).
+
 - Production deployment
 
   - Actually deploying the app instead of serving it locally.
 
 - Code cleanliness
+
   - Some functions can be refactored in a better way. For example, the StringHelper functions.
- 
- - More thorough testing on other browsers
-    - The app was tested in Windows and MacOS, specifically on the Chrome and Safari browsers
+
+- More thorough testing on other browsers
+  - The app was tested in Windows and MacOS, specifically on the Chrome and Safari browsers
 
 ## Space for ideas during development
 
