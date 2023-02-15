@@ -48,7 +48,6 @@ export default function SearchComponent() {
     }
   };
 
-  // TODO: attempt changing event for event, value and just selecting value.
   return (
     <Container>
       <Grid container spacing={2} alignItems='flex' xs={12}>
