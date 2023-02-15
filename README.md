@@ -47,6 +47,12 @@ Then, clone the repo and follow these steps.
     npm run dev
 ```
 
+Alternatively, you can build and run a production build by using
+```
+    npm run build
+    npm preview
+```
+
 ## Worklog
 
 Initial project setup
@@ -87,9 +93,11 @@ Approach 1 may take a bit longer since the API has to be modified, but once impl
 
 This improvement is **imperative**, as currently the text matching is not guaranteed to reflect exactly which search criteria was used by the backend to filter the Voice Actors for our end customer.
 
+Additional backend endpoints could be set up if needed.
+
 - Improved UI of highlighted text
 
-  - The text component of the Voice Actor card behaves inconsistently when the description is short. An improvement would be to always guarantee equal Card height relative to other Cards, regardless of text content.
+  - The text component of the Voice Actor card behaves inconsistently when the description is short. An improvement would be to always guarantee equal Card height relative to other Cards, regardless of text content length.
 
 - Caching
 
