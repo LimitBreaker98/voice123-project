@@ -4,6 +4,8 @@
 
 Jorge Andres Esguerra (LimitBreaker98 on github)
 
+Thanks for taking the time to review this repo! :D
+
 ## Application features
 
 - Search bar where users can conduct searches using enter key or clicking the search button.
@@ -65,7 +67,7 @@ Initial project setup
 | Voice Actor Card implementation (Basic Card Layout with image, link to voice123 profile)  | 2 hours                                                       |
 | Media Player implementation                                                               | 1 hour                                                        |
 | Highlighted text implementation                                                           | 4 hours                                                       |
-| Final refactoring and manual testing                                                      | 2 hours                                                       |
+| Final refactoring and testing manually on Safari, Chrome.                                                     | 4 hours                                                       |
 
 Note: Highlighted text was the most challenging part of the project since there is no specification on how the provided API endpoint for search uses the keywords parameters to filter the returned voice actors.
 
@@ -135,6 +137,9 @@ Additional backend endpoints could be set up if needed.
 
 - Code cleanliness
   - Some functions can be refactored in a better way. For example, the StringHelper functions.
+ 
+ - More thorough testing on other browsers
+    - The app was tested in Windows and MacOS, specifically on the Chrome and Safari browsers
 
 ## Space for ideas during development
 
