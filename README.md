@@ -25,7 +25,9 @@ While Create React App is the better known project starter for React application
 
 ### Prerequisites
 
-This project requires you to have node and npm installed. Then, clone the repo and follow these steps.
+This project requires you to have node and npm installed. Please follow the official instructions of your platform [here](https://nodejs.org/en/).
+
+Then, clone the repo and follow these steps.
 
 ### Step 0: cd into project folder
 
@@ -100,6 +102,7 @@ This improvement is **imperative**, as currently the text matching is not guaran
   - I have not had much experience designing UI's but with the help of other team members who have more experience, the styles of the app may look better. For example, using the CircleAvatar component to show the picture of every Voice Actor could help the look and feel of the app.
   - Adding a theme using the createTheme functionality of Material UI would also standardize the styles used throughout the app and allow extensions to benefit from preset styling.
   - Creating a theme would also allow implementation of dark mode.
+  - Add a skeleton component to show the user that information is loading. This would be based on [Skeleton - material UI](https://mui.com/material-ui/react-skeleton/)
 
 - Internationalization
 
