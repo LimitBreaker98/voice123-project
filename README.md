@@ -4,8 +4,6 @@
 
 Jorge Andres Esguerra (LimitBreaker98 on github)
 
-Thanks for taking the time to review this repo! :D
-
 ## Application features
 
 - Search bar where users can conduct searches using enter key or clicking the search button.
