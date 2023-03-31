@@ -104,27 +104,29 @@ Additional backend endpoints could be set up if needed.
 
   - With more time I can implement Caching throughout the project.
     - At the moment, the pagination implementation is not Caching the responses every time we change pages.
-      - The [TanStack Query Library (Previously known as React Query)](https://tanstack.com/query/latest/docs/react/overview) library could be leveraged to cache fetching and improve query management in the app. This would also introduce a new dependency for the project but the trade-off is worth it, since this library is actively being developed.
+      - The [TanStack Query Library (Previously known as React Query)](https://tanstack.com/query/latest/docs/react/overview) library could be leveraged to cache fetching and improve query management in the app. This would also introduce a new dependency for the project but the trade-off could worth it, since this library is actively being developed.
+      - I'm sure it could also be improved with some more advanced react hooks but I need to get up to date with those. 
 
 - Better UI styles
 
-  - I have not had much experience designing UI's but with the help of other team members who have more experience, the styles of the app may look better. For example, using the CircleAvatar component to show the picture of every Voice Actor could help the look and feel of the app.
+  - This app uses basic styling but using a custom component or styling library could help it look better. For example, using the CircleAvatar component to show the picture of every Voice Actor could help the look and feel of the app.
   - Adding a theme using the createTheme functionality of Material UI would also standardize the styles used throughout the app and allow extensions to benefit from preset styling.
   - Creating a theme would also allow implementation of dark mode.
   - Add a skeleton component to show the user that information is loading. This would be based on [Skeleton - material UI](https://mui.com/material-ui/react-skeleton/)
 
 - Internationalization
 
-  - If we have enough traffic from non-english speaking countries, I would consider adding internationalization support to the app. I'd use the [react-intl](https://www.npmjs.com/package/react-intl) package for this, since I've previously used it.
+  - If there is enough traffic from non-english speaking countries, I would consider adding internationalization support to the app. I'd use the [react-intl](https://www.npmjs.com/package/react-intl) package for this, since I've previously used it.
 
 - Backend improvements
 
-  - At the moment, the provided backend returns an array of objects, where every object represents a Voice Actor. During my investigation of the responses, I figured out that some fields are repeated and redundant. I do not know the underlying implementation of our backend and what kind of DB it uses, but I could study how it is implemented and suggest improvements to reduce the redundancy of the data. This helps us storage wise and also improves the onboarding experience for new devs onto the codebase.
+  - At the moment, the provided backend returns an array of objects, where every object represents a Voice Actor. During my investigation of the responses, I figured out that some fields are repeated and redundant. I do not know the underlying implementation of the backend and what kind of DB it uses, but I could study how it is implemented and suggest improvements to reduce the redundancy of the data. This helps us storage wise and also improves the onboarding experience for new devs onto the codebase.
 
 - Test Suite
 
-  - Adding a unit test suite for the string utility functions
-  - Adding [cypress](https://www.cypress.io/) to have UI tests
+  - Adding a unit test suite for the string utility functions.
+  - Adding [cypress](https://www.cypress.io/) to have UI tests. 
+  - Adding tests using Jest.
 
 - Improve responsiveness of the app.
 
@@ -144,12 +146,5 @@ Additional backend endpoints could be set up if needed.
 
   - The app was tested in Windows and MacOS, specifically on the Chrome and Safari browsers
 
-- Improving API security, since at the moment it does not use API Keys or another mechanism to avoid exploits and attacks. This is a test app so for the moment it does not matter, but a bigger project would require an implementation of secure feature.
+- Improving API security, since at the moment it does not use API Keys or another mechanism to avoid exploits and attacks. This is a test app so for the moment it does not matter, but a bigger project would require an implementation of security features.
 
-## Space for ideas during development
-
-- The API provides data of voice over providers for services a customer may require.
-- The API already has some kind of text based search where it uses all the provided keywords as a filter for possible candidates, according to their data.
-- The API's response is paginated.
-- According to the custom headers of the response, every page has 10 rows, and at the moment there are 3 pages total, with 24 rows of data in total.
-- The API endpoint does not require authentication to be accessed.
